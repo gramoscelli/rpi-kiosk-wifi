@@ -60,10 +60,12 @@ function myFunction() {
   }
 }
 function UrlExists(url, cb) {
-    jQuery.ajax({
+    $.ajaxSetup({ cache: false });
+    $.ajax({
         url: url,
         dataType: 'text',
         type: 'GET',
+        cache: false,
         complete: function (xhr) {
             if (typeof cb === 'function')
                 cb.apply(this, [xhr.status]);
@@ -72,10 +74,9 @@ function UrlExists(url, cb) {
 }
 
 setInterval(function() {
-			UrlExists('https://remonet.ar/', function (status) {
+			UrlExists('https://www.remonet.ar/pwa', function (status) {
                          	if (status === 200) {
-                                  console.log('200');
-                                 // window.location='https://www.remonet.ar/pwa';
+                                     window.location='https://www.remonet.ar/pwa';
         			}
                             });
         		}, 3000);
