@@ -9,11 +9,10 @@
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script src="/js/jquery-3.6.0.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" href="/start/css/bootstrap.min.css">
+    <script src="/start/js/jquery-3.6.0.min.js"></script>
+    <script src="/start/js/popper.min.js"></script>
+    <script src="/start/js/bootstrap.min.js"></script>
 </head>
 <body>
 <script>
@@ -24,7 +23,7 @@ function myFunction() {
   } else {
     x.type = "password";
   }
-}
+    }
 function UrlExists(url, cb) {
     $.ajaxSetup({ cache: false });
     $.ajax({
