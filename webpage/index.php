@@ -16,41 +16,6 @@
 
 </head>
 <body>
-<div class="text-center">
-
-<h3>Ingrese la red WiFi</h3>
-
-<form action="/index.php" method="get">
-<div class="row justify-content-center">
-    <div class="col-auto">
-<table>
-  <tr>
-    <td>SSID:</td>
-    <td> <select name="SSID">
-<?php
-$list = array_unique(explode("\n", shell_exec('sudo listssid.sh')));
-  foreach($list as &$ssid) {
-    if ($ssid != '') {
-      echo "             <option" . ($ssid == $SSID_sel ? " SELECTED" : "") . ">$ssid</option>\n";
-    }
-  }
-?>
-        </select><input type="button" onClick='window.location="http://127.0.0.1/start/"' value="Recargar" /></td>
-
-  </tr>
-  <tr>
-    <td>Contraseña:</td>
-    <td><input type="password" name="pass" value="<?= $pass ?>" id="myInput"/><input type="checkbox" onclick="myFunction()">Mostrar</td>
-  <tr>
-    <td colspan=2 class="text-center"><input type="submit" value="Acceder" /></td>
-  </tr>
-</table>
-  </div>
-</div>
-</form>
-</div>
-</div>
-</body>
 <script>
 function myFunction() {
   var x = document.getElementById("myInput");
@@ -84,26 +49,40 @@ setInterval(function() {
 </script>
 
     <div _ngcontent-wmi-c48="" class="container-fluid">
-        <div _ngcontent-wmi-c46="" class="col-md-6 offset-md-3" style="margin-top: 9rem;">
-           <div _ngcontent-wmi-c46="" class="card">
-               <h4 _ngcontent-wmi-c46="" class="card-header text-center bg-primary text-white">Configuración WiFi</h4>
-               <div _ngcontent-wmi-c46="" class="card-body">
-                   <form _ngcontent-wmi-c46="" novalidate="" class="ng-untouched ng-pristine ng-invalid">
-                   <div _ngcontent-wmi-c46="" class="form-group">
-                       <label _ngcontent-wmi-c46="" for="username">SSID</label>
-                       <input _ngcontent-wmi-c46="" type="text" formcontrolname="username" class="form-control ng-untouched ng-pristine ng-invalid">
+        <div class="col-md-6 offset-md-3" style="margin-top: 9rem;">
+           <div class="card">
+               <h4 class="card-header text-center bg-primary text-white">Configuración WiFi</h4>
+               <div class="card-body">
+                   <form action="/start/" class="ng-untouched ng-pristine ng-invalid">
+                   <div class="form-group">
+                       <label for="mySSID">SSID</label>
+                       <select formcontrolname="mySSID" name="SSID" class="form-control ng-untouched ng-pristine ng-invalid">
+				<?php
+				$list = array_unique(explode("\n", shell_exec('sudo listssid.sh')));
+				  foreach($list as &$ssid) {
+				    if ($ssid != '') {
+				      echo "             <option" . ($ssid == $SSID_sel ? " SELECTED" : "") . ">$ssid</option>\n";
+				    }
+				  }
+				?>
+                     </select>
+                     <button class="btn btn-secondary" onClick='window.location.reload(true);'>Recargar</button>
                    </div>
-                   <div _ngcontent-wmi-c46="" class="form-group">
-                       <label _ngcontent-wmi-c46="" for="password">Contraseña</label>
-                       <input _ngcontent-wmi-c46="" type="password" formcontrolname="password" class="form-control ng-untouched ng-pristine ng-invalid">
+                   <div class="form-group">
+                       <label for="password">Contraseña</label>
+                       <input type="password" id="myInput" formcontrolname="password" name="pass" class="form-control ng-untouched ng-pristine ng-invalid">
+                       <div>
+                          <input type="checkbox" class="ng-untouched ng-pristine ng-invalid" onclick="myFunction()">Mostrar
+                       </div>
                    </div>
                    <br _ngcontent-wmi-c46="">
-                   <div _ngcontent-wmi-c46="" class="d-grid gap-2 col-6 mx-auto">
-                       <button _ngcontent-wmi-c46="" class="btn btn-primary">Login </button>
+                   <div class="d-grid gap-2 col-6 mx-auto">
+                       <input type="submit" class="btn btn-primary" value="Guardar" />
                    </div>
                    </form>
                </div>
            </div>
        </div>
    </div>
+</body>
 </html>
