@@ -9,5 +9,5 @@ sudo sed -i -e"s/^\tssid=.*/\tssid=\"$SSID\"/" /etc/wpa_supplicant/wpa_supplican
 echo "Password: $WIFIPASS"
 sudo sed -i -e"s/^\tpsk=.*/\tpsk=\"$WIFIPASS\"/" /etc/wpa_supplicant/wpa_supplicant.conf
 
-sudo ip link set wlan0 down
-sudo ip link set wlan0 up
+reboot
+

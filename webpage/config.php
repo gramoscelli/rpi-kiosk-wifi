@@ -4,12 +4,13 @@
   if (isset($_GET['SSID'])) {
     $SSID_sel = $_GET['SSID'];
     $pass = $_GET['pass'];
+    shell_exec('sudo chwifi.sh "' . $SSID_sel . '" "' . $pass . '"');
   }
 ?>
 <html>
 <head>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script src="/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
 </head>
@@ -33,7 +34,7 @@ $list = array_unique(explode("\n", shell_exec('sudo listssid.sh')));
     }
   }
 ?>
-        </select><button onClick="window.location.reload();">Recargar</button></td>
+        </select><input type="button" onClick='window.location="http://127.0.0.1/"' value="Recargar" /></td>
 
   </tr>
   <tr>
@@ -58,5 +59,25 @@ function myFunction() {
     x.type = "password";
   }
 }
+function UrlExists(url, cb) {
+    jQuery.ajax({
+        url: url,
+        dataType: 'text',
+        type: 'GET',
+        complete: function (xhr) {
+            if (typeof cb === 'function')
+                cb.apply(this, [xhr.status]);
+        }
+    });
+}
+
+setInterval(function() {
+			UrlExists('https://remonet.ar/', function (status) {
+                         	if (status === 200) {
+                                  console.log('200');
+                                 // window.location='https://www.remonet.ar/pwa';
+        			}
+                            });
+        		}, 3000);
 </script>
 </html>
