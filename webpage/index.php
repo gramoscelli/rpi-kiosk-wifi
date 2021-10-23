@@ -13,6 +13,7 @@
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <div class="text-center">
@@ -34,7 +35,7 @@ $list = array_unique(explode("\n", shell_exec('sudo listssid.sh')));
     }
   }
 ?>
-        </select><input type="button" onClick='window.location="http://127.0.0.1/"' value="Recargar" /></td>
+        </select><input type="button" onClick='window.location="http://127.0.0.1/start/"' value="Recargar" /></td>
 
   </tr>
   <tr>
@@ -81,4 +82,28 @@ setInterval(function() {
                             });
         		}, 3000);
 </script>
+
+    <div _ngcontent-wmi-c48="" class="container-fluid">
+        <div _ngcontent-wmi-c46="" class="col-md-6 offset-md-3" style="margin-top: 9rem;">
+           <div _ngcontent-wmi-c46="" class="card">
+               <h4 _ngcontent-wmi-c46="" class="card-header text-center bg-primary text-white">Configuración WiFi</h4>
+               <div _ngcontent-wmi-c46="" class="card-body">
+                   <form _ngcontent-wmi-c46="" novalidate="" class="ng-untouched ng-pristine ng-invalid">
+                   <div _ngcontent-wmi-c46="" class="form-group">
+                       <label _ngcontent-wmi-c46="" for="username">SSID</label>
+                       <input _ngcontent-wmi-c46="" type="text" formcontrolname="username" class="form-control ng-untouched ng-pristine ng-invalid">
+                   </div>
+                   <div _ngcontent-wmi-c46="" class="form-group">
+                       <label _ngcontent-wmi-c46="" for="password">Contraseña</label>
+                       <input _ngcontent-wmi-c46="" type="password" formcontrolname="password" class="form-control ng-untouched ng-pristine ng-invalid">
+                   </div>
+                   <br _ngcontent-wmi-c46="">
+                   <div _ngcontent-wmi-c46="" class="d-grid gap-2 col-6 mx-auto">
+                       <button _ngcontent-wmi-c46="" class="btn btn-primary">Login </button>
+                   </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
 </html>
