@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt install php
+sudo apt install -y php
 sudo ln -s $(pwd)/bin/chwifi.sh /usr/bin/chwifi.sh
 sudo ln -s $(pwd)/bin/listssid.sh /usr/bin/listssid.sh
 sudo ln -s  $(pwd)/webpage /var/www/html/start
