@@ -28,7 +28,7 @@ setInterval(function() {
 	if (count>=3) {
 		window.location='http://127.0.0.1/start/config.php';
 	}
-	UrlExists('https://www.remonet.ar/pwa', function (status) {
+	UrlExists('https://remonet.ar/', function (status) {
 		if (status === 200) {
 			window.location='https://www.remonet.ar/pwa';
 		} else {
