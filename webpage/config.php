@@ -41,7 +41,7 @@ function UrlExists(url, cb) {
 setInterval(function() {
     UrlExists('https://www.remonet.ar/pwa', function (status) {
         if (status === 200) {
-            //window.location='https://www.remonet.ar/pwa';
+            window.location='https://www.remonet.ar/pwa';
             }
         });
     }, 3000);

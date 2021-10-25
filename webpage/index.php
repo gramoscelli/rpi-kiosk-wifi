@@ -21,13 +21,19 @@ function UrlExists(url, cb) {
     });
 }
 
-setTimeout(function() {
-    UrlExists('https://www.remonet.ar/pwa', function (status) {
-        if (status === 200) {
-            window.location='https://www.remonet.ar/pwa';
-	} else {
-	    window.location='https://127.0.0.1/config.php';
+var count = 0;
+
+setInterval(function() {
+	count++;
+	if (count>=3) {
+		window.location='http://127.0.0.1/start/config.php';
 	}
+	UrlExists('https://www.remonet.ar/pwa', function (status) {
+		if (status === 200) {
+			window.location='https://www.remonet.ar/pwa';
+		} else {
+			window.location='http://127.0.0.1/start/config.php';
+		}
     });
     }, 3000);
 </script>
