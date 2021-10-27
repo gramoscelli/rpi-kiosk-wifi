@@ -10,6 +10,7 @@ ExecStart=/bin/bash /home/pi/kiosk.sh
 Restart=on-abort
 User=pi
 Group=pi
+Requires=startx.service
 
 [Install]
 WantedBy=graphical.target

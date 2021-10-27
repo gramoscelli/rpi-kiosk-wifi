@@ -1,0 +1,13 @@
+[Unit]
+Description=MyService
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/startx
+StandardOutput=inherit
+StandardError=inherit
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
