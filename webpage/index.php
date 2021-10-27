@@ -26,13 +26,13 @@ var count = 0;
 setInterval(function() {
 	count++;
 	if (count>=3) {
-		window.location='http://127.0.0.1/start/config.php';
+		//window.location='/start/config.php';
 	}
 	UrlExists('https://remonet.ar/', function (status) {
 		if (status === 200) {
 			window.location='https://www.remonet.ar/pwa';
 		} else {
-			window.location='http://127.0.0.1/start/config.php';
+			//window.location='http://127.0.0.1/start/config.php';
 		}
     });
     }, 3000);
