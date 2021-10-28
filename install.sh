@@ -31,16 +31,16 @@ sudo apt install -y php7.3 php7.3-fpm nginx --no-install-recommends
 
 [ -f /usr/bin/chwifi.sh ] || sudo ln -s $DIR/bin/chwifi.sh /usr/bin/chwifi.sh
 [ -f /usr/bin/listssid.sh ] || sudo ln -s $DIR/bin/listssid.sh /usr/bin/listssid.sh
-[ -f /var/www/html/start ] || sudo ln -s  $DIR/webpage /var/www/html/start
-[ cmp --silent $DIR/nginx/site-default /etc/nginx/sites-enabled/default ]  || sudo cp $DIR/nginx/site-default /etc/nginx/sites-enabled/default
+[ -d /var/www/html/start ] || sudo ln -s  $DIR/webpage /var/www/html/start
+cmp --silent $DIR/nginx/site-default /etc/nginx/sites-enabled/default  || sudo cp $DIR/nginx/site-default /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx
 
 # -------------------- installing kisok service ---------------------------
 
 [ -f /home/pi/kiosk.sh ] || cp $DIR/kiosk/kiosk.sh /home/pi/kiosk.sh
-[ -f /lib/systemd/system/kiosk.service ]  && sudo cp $DIR/kiosk/kiosk.service /lib/systemd/system/kiosk.service
-[ -f /lib/systemd/system/startx.service ]  && sudo cp $DIR/startx/startx.service /lib/systemd/system/startx.service
-grep -q "www-data" /etc/sudoers || sudo bash -c 'echo "www-data ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
+[ -f /lib/systemd/system/kiosk.service ]  || sudo cp $DIR/kiosk/kiosk.service /lib/systemd/system/kiosk.service
+[ -f /lib/systemd/system/startx.service ]  || sudo cp $DIR/startx/startx.service /lib/systemd/system/startx.service
+sudo grep -q "www-data" /etc/sudoers || sudo bash -c 'echo "www-data ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 sudo systemctl enable kiosk.service
 
 echo "finish intallation. Please reboot..."
