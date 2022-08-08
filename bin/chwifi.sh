@@ -12,14 +12,8 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 
-sudo cp $DIR/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 
-echo "SSID: $SSID"
-sudo sed -i -e"s/SSID/$SSID/g" /etc/wpa_supplicant/wpa_supplicant.conf
-
-echo "Password: $WIFIPASS"
-sudo sed -i -e"s/password/$WIFIPASS/g" /etc/wpa_supplicant/wpa_supplicant.conf
-
+sudo nmcli dev wifi connect "$SSID" password "$WIFIPASS"
 sudo systemctl daemon-reload
 sudo systemctl restart dhcpcd
 
