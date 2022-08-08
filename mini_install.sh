@@ -9,32 +9,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
-
-# -------------------- doing a packages upgrade ---------------------------
-
-sudo apt clean
-sudo apt autoremove -y
-sudo apt update
-sudo apt upgrade -y
-
-# -------------------- installing x11 server ---------------------------
-
-sudo apt install -y x11-apps xinit xserver-xorg xinit xserver-xorg-video-fbdev x11-xserver-utils unclutter
-sudo apt install -y chromium-browser --no-install-recommends
-
-# -------------------- installing tools and web server ---------------------------
-
-sudo apt install -y xdotool unclutter sed dhcpcd5
-sudo apt install -y php7.4 php7.4-fpm nginx --no-install-recommends
-
-# -------------------- installing wifi tools and wifi site ---------------------------
-
-[ -f /usr/bin/chwifi.sh ] || sudo ln -s $DIR/bin/chwifi.sh /usr/bin/chwifi.sh
-[ -f /usr/bin/listssid.sh ] || sudo ln -s $DIR/bin/listssid.sh /usr/bin/listssid.sh
-[ -d /var/www/html/start ] || sudo ln -s  $DIR/webpage /var/www/html/start
-cmp --silent $DIR/nginx/site-default /etc/nginx/sites-enabled/default  || sudo cp $DIR/nginx/site-default /etc/nginx/sites-enabled/default
-sudo systemctl restart nginx
-
+MY_USER="$USER"
 # -------------------- installing kisok service ---------------------------
 
 [ -f /usr/bin/kiosk.sh ] || sudo cp $DIR/kiosk/kiosk.sh /usr/bin/kiosk.sh
@@ -43,7 +18,6 @@ sudo systemctl restart nginx
 sudo grep -q "www-data" /etc/sudoers || sudo bash -c 'echo "www-data ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers'
 sudo sed -i "s/USER/$USER/g" /lib/systemd/system/kiosk.service
 sudo systemctl enable kiosk.service
-sudo systemctl enable startx.service
 
 echo "finish intallation. Please reboot..."
 
